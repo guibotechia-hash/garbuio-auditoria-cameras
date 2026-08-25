@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Auditoria de câmeras veiculares da Garbuio Transportadora">
+  <title>Auditoria de Câmeras Veiculares | Garbuio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#" aria-label="Garbuio - início">
+        <img src="https://public.quintusapp.com/assets/customers/garbuio/logos/logo-cinza.svg" alt="Garbuio">
+      </a>
+      <div>
+        <p class="eyebrow">Operação & conformidade</p>
+        <h1>Auditoria de Câmeras Veiculares</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="list-view" aria-labelledby="fleet-title">
+      <div class="page-heading">
+        <div><p class="eyebrow">Frota monitorada</p><h2 id="fleet-title">Veículos</h2></div>
+        <button id="export-btn" class="button button-outline" type="button">Exportar auditorias CSV</button>
+      </div>
+      <div class="toolbar" role="search">
+        <label class="search-field"><span class="sr-only">Buscar</span><span class="search-icon">⌕</span><input id="search" type="search" placeholder="Buscar por placa ou operação"></label>
+        <label><span>Status</span><select id="status-filter"><option value="">Todos os status</option><option>CONFORME</option><option>NAO CONFORME</option><option>NUNCA AUDITADO</option><option>REPROVADO</option></select></label>
+        <label><span>Fabricante</span><select id="manufacturer-filter"><option value="">Todos os fabricantes</option><option>INTELBRAS</option><option>C-TEC</option></select></label>
+      </div>
+      <div class="summary"><span id="result-count">Carregando veículos...</span><span class="hint">Selecione um veículo para iniciar uma auditoria</span></div>
+      <div class="vehicle-grid" id="vehicle-list" aria-live="polite"></div>
+      <div id="empty-state" class="empty hidden"><strong>Nenhum veículo encontrado</strong><span>Tente ajustar sua busca ou filtros.</span></div>
+    </section>
+
+    <section id="audit-view" class="hidden" aria-labelledby="audit-title">
+      <button id="back-btn" class="back-link" type="button">← Voltar para veículos</button>
+      <div class="audit-heading"><div><p class="eyebrow">Nova auditoria</p><h2 id="audit-title"></h2><p id="audit-meta" class="muted"></p></div><span id="audit-status" class="status-badge"></span></div>
+      <div class="audit-layout">
+        <form id="audit-form" class="audit-form">
+          <div class="form-card">
+            <div class="form-card-heading"><div><p class="eyebrow">Configuração</p><h3>Dados da verificação</h3></div><span class="required-note">* obrigatório</span></div>
+            <label>Cliente/Contrato *<select id="contract" required><option>ICONIC</option><option>PETROBRAS</option><option>IPIRANGA</option></select></label>
+            <div class="form-row"><label>Dias gravados *<input id="days" type="number" min="0" required placeholder="Ex.: 10"></label><label>Data da verificação *<input id="audit-date" type="date" required></label></div>
+          </div>
+          <div class="form-card"><div class="form-card-heading"><div><p class="eyebrow">Verificação técnica</p><h3>Checklist</h3></div></div><div id="checklist" class="checklist"></div></div>
+          <div class="form-card"><label>Observações gerais<textarea id="general-notes" rows="4" placeholder="Registre evidências, ocorrências ou encaminhamentos..."></textarea></label><fieldset><legend>Resultado final *</legend><div class="result-options"><label><input type="radio" name="result" value="CONFORME" required><span>Conforme</span></label><label><input type="radio" name="result" value="NAO CONFORME"><span>Não conforme</span></label><label><input type="radio" name="result" value="PENDENTE"><span>Pendente</span></label></div></fieldset><button class="button button-primary save-button" type="submit">Salvar auditoria</button></div>
+        </form>
+        <aside id="reference-panel" class="reference-panel"></aside>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>Garbuio Transportadora</span><span id="year"></span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
